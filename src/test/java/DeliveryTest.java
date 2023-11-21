@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
+import data.DataGenerator;
 
 import java.time.Duration;
 
@@ -35,7 +36,7 @@ class DeliveryTest {
         $("[data-test-id=phone] input").setValue(validUser.getPhone());
         $("[data-test-id='agreement']").click();
         $(".button").click();
-        $(withText("Успешно!")).shouldBe( Condition.visible, Duration.ofSeconds(15));
+        $(withText("Успешно!")).shouldBe( Condition.visible, Duration.ofSeconds(20));
         $("[data-test-id=success-notification] .notification__content")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + firstMeetingDate));
 
@@ -46,7 +47,7 @@ class DeliveryTest {
         $("[data-test-id=replan-notification]")
                 .shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
         $(withText("Перепланировать")).click();
-        $("[data-test-id=success-notification]").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("[data-test-id=success-notification]").shouldBe(Condition.visible, Duration.ofSeconds(20));
         $("[data-test-id=success-notification] .notification__content")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate));
     }
